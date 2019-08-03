@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const ResourceList = ({ resource }) => {
+//Hooks are powerful as it lets you easily reuse this logic between components
+const useResources = (resources) => {
     const [resources, setResources] = useState([]);
 
-    const fetchResource =  async (resource) => {
-        const response = await axios.get(`https://jsonplaceholder.typicode.com/${resource}`);
-
-        setResources(response.data);
-    }
-
     useEffect(() => {
-        fetchResource(resource)
-    }, [resource])
+        (async resource => {
+            const response = await axios.get(`https://jsonplaceholder.typicode.com/${resource}`);
+            setResources(response.data);
+        })(resource);
+    }, [resource]);
 
-    return <div>{resources.length}</div>;
+    return resources
+};
+
+const ResourceList = ({ resource }) => {
+    const resources = useResources(resource);
+
+    return (
+        <ul>
+            {resources.map(record => (
+                <li key={record.id}>{record.title}</li>
+            ))}
+        </ul>
+    );
 }
 
 export default ResourceList;
