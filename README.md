@@ -6,5 +6,6 @@ Notes:
     * componentDidUpdate is the method to use when wanting to run code again when the component is rerendered - but make sure to add a check for prevProps to prevent infinite rerendering when setting state in this method
     * componentDidUpdate(prevProps) {
         if (prevProps.resource !== this.props.resource) { ...code ...setState } }
-
-
+- With react hooks the solution to this problem when using useEffect is the second argument of the useEffect method. 
+    useEffect(() => {fetchResource(resource)}, [resource])
+    * everytime the value of the second argument is different from the previous, it calls the arrow function argument
