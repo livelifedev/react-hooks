@@ -1,8 +1,10 @@
+//Example of react hook
 import React, { useState } from "react";
-import ResourceList from "./ResourceList";
 
 const App = () => {
     const [resource, setResource] = useState("posts");
+    //can call useState as many times as needed
+    //const [resource2, setResource2] = useState("random");
 
     return (
         <div>
@@ -14,7 +16,7 @@ const App = () => {
                     Todos
                 </button>
             </div>
-            <ResourceList resource={resource} />
+            {resource}
         </div>
     );
 }
