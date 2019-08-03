@@ -1,6 +1,8 @@
 Practice using the react hook system
 
 Notes:
+The hook system introduces component level state and some lifecycle methods to function based components. Makes it easy to extract logic from function based components using hooks and turn it into a seperate component to share.
+
 - Class based components notes
     * once a class based component is mounted, even if it is rerendered the componentDidMount method will not get called again
     * componentDidUpdate is the method to use when wanting to run code again when the component is rerendered - but make sure to add a check for prevProps to prevent infinite rerendering when setting state in this method
@@ -15,5 +17,5 @@ Notes:
     * array with same values are treated as same so will not call arrow function
 - api request function has to be defined outside of useEffect, or if defined within must be immediately invoked
 - The power of hooks is it makes it easy to share logic between components
-    - Essentially all that is needed is the resource as input and resources as output, and the hook stuff can be extracted and reused
+    - Essentially all that is needed is the resource ("posts" or "todos") as input and resources ("list of resources from api request") as output, and the hook stuff can be extracted and reused
         - resource prop -> Hook Stuff -> resources array
